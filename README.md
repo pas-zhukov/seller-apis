@@ -25,8 +25,8 @@ pip install -r requirements.txt
 
 Для работы с Ozon:
 
-- `SELLER_TOKEN` - 
-- `CLIENT_ID` - 
+- `SELLER_TOKEN` - API-ключ Ozon Seller. [Как получить](https://docs.ozon.ru/api/seller/#tag/Auth)
+- `CLIENT_ID` - Идентификатор клиента Ozon. [Как найти](https://sellerstats.ru/help/api_key_ozon)
 
 Для работы с Яндекс.Маркет:
 
