@@ -32,7 +32,6 @@ def get_product_list(last_id: str, client_id: str, seller_token: str) -> dict:
         HTTPError: Если в ответ на запрос не пришёл код 200
 
     Examples:
-
         >>> get_product_list("", client_id, seller_token)
         {
           "result": {
@@ -110,8 +109,46 @@ def get_offer_ids(client_id: str, seller_token: str) -> list:
     return offer_ids
 
 
-def update_price(prices: list, client_id, seller_token):
-    """Обновить цены товаров"""
+def update_price(prices: list[dict], client_id: str, seller_token: str):
+    """Обновить цены товаров на Ozon
+
+    Args:
+        prices (list): Список товаров с информацией о стоимости
+        client_id (str): Идентификатор клиента Ozon
+        seller_token (str): API-ключ Ozon Seller
+
+    Returns:
+        dict: Ответ API Ozon в виде json-структуры
+
+    Raises:
+        HTTPError: Если в ответ на запрос не пришёл код 200
+
+    Examples:
+        >>> update_price(prices, client_id, seller_token)
+        {
+          "result": [
+            {
+              "product_id": 1386,
+              "offer_id": "PH8865",
+              "updated": true,
+              "errors": []
+            }
+          ]
+        }
+
+        >>> update_price(prices, client_id, seller_token)
+        {
+          "code": 0,
+          "details": [
+            {
+              "typeUrl": "string",
+              "value": "string"
+            }
+          ],
+          "message": "string"
+        }
+
+    """
     url = "https://api-seller.ozon.ru/v1/product/import/prices"
     headers = {
         "Client-Id": client_id,
@@ -262,7 +299,6 @@ def create_prices(watch_remnants: list[dict], offer_ids: list) -> list[dict]:
         str[dict]: Список товаров с информацией о стоимости
 
     Examples:
-
         >>> create_prices(watch_remnants, offer_ids)
         [{"auto_action_enabled": "UNKNOWN",
         "currency_code": "RUB",
@@ -313,7 +349,7 @@ def divide(lst: list, n: int) -> list:
         list: Одна из частей в виде списка
 
     Examples:
-        tuple(divide([1, 2, 3, 4], 2))
+        >>> tuple(divide([1, 2, 3, 4], 2))
         ([1, 2], [3, 4])
     """
     for i in range(0, len(lst), n):
