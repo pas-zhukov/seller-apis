@@ -356,7 +356,29 @@ def divide(lst: list, n: int) -> list:
         yield lst[i: i + n]
 
 
-async def upload_prices(watch_remnants, client_id, seller_token):
+async def upload_prices(watch_remnants: list[dict], client_id: str, seller_token: str) -> list[dict]:
+    """Обновить цены товаров в магазине Ozon
+
+    Args:
+        watch_remnants (list[dict]): Список карточек товаров
+        client_id (str): Идентификатор клиента Ozon
+        seller_token (str): API-ключ Ozon Seller
+
+    Returns:
+        list[dict]: Список товаров с информацией о стоимости
+
+    Examples:
+        >>> upload_prices(watch_remnants, client_id, seller_token)
+        [{
+        "auto_action_enabled": "UNKNOWN",
+        "currency_code": "RUB",
+        "offer_id": "1234567",
+        "old_price": "0",
+        "price": "1990"
+        }]
+
+
+    """
     offer_ids = get_offer_ids(client_id, seller_token)
     prices = create_prices(watch_remnants, offer_ids)
     for some_price in list(divide(prices, 1000)):
@@ -364,7 +386,41 @@ async def upload_prices(watch_remnants, client_id, seller_token):
     return prices
 
 
-async def upload_stocks(watch_remnants, client_id, seller_token):
+async def upload_stocks(watch_remnants: list[dict], client_id: str, seller_token: str) -> tuple[list, list]:
+    """Обновить данные о кол-ве товаров на сайте Ozon
+
+
+    Args:
+        watch_remnants (list[dict]): Список карточек товаров
+        client_id (str): Идентификатор клиента Ozon
+        seller_token (str): API-ключ Ozon Seller
+
+    Returns:
+        tuple[list, list]: Список товаров, с артикулами и кол-вом, которые есть в наличии;
+        cписок всех товаров с артикулами и кол-вом.
+
+    Examples:
+        >>> upload_stocks(watch_remnants, client_id, seller_token)
+        (
+          [
+            {
+              "offer_id": "1234567",
+              "stock": 25
+            }
+          ],
+          [
+            {
+              "offer_id": "1234567",
+              "stock": 25
+            },
+            {
+              "offer_id": "1234568",
+              "stock": 0
+            }
+          ]
+        )
+
+    """
     offer_ids = get_offer_ids(client_id, seller_token)
     stocks = create_stocks(watch_remnants, offer_ids)
     for some_stock in list(divide(stocks, 100)):
