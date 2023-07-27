@@ -30,11 +30,13 @@ pip install -r requirements.txt
 
 Для работы с Яндекс.Маркет:
 
-- `MARKET_TOKEN` -
-- `FBS_ID` - 
-- `DBS_ID` - 
-- `WAREHOUSE_FBS_ID` - 
-- `WAREHOUSE_DBS_ID` - 
+- `MARKET_TOKEN` - API-ключ продавца Яндекс.Маркет. [Как получить](https://yandex.ru/dev/market/partner-api/doc/ru/concepts/authorization)
+- `FBS_ID` - Идентификатор кампании и идентификатор магазина с FBS моделью. [Как найти](https://yandex.ru/dev/market/partner-api/doc/ru/reference/campaigns/getCampaign#path-parameters). [О моделях](https://yandex.ru/support/marketplace/introduction/models.html)
+- `DBS_ID` - Идентификатор кампании и идентификатор магазина с DBS моделью. [Как найти](https://yandex.ru/dev/market/partner-api/doc/ru/reference/campaigns/getCampaign#path-parameters)
+- `WAREHOUSE_FBS_ID` - Идентификатор склада FBS. [Как найти](https://yandex.ru/dev/market/partner-api/doc/ru/reference/stocks/updateStocks#stockdto)
+- `WAREHOUSE_DBS_ID` - Идентификатор склада DBS. [Как найти](https://yandex.ru/dev/market/partner-api/doc/ru/reference/stocks/updateStocks#stockdto)
+
+[_Статья, где описано получение и поиск ID для Яндекс.Маркета_](https://academy.rdv-it.ru/home/samostoyatel-noe-podklyuchenie/shag-3-nastrojki-podklyucheniya-marketplejsov/nastrojka-podklyucheniya-k-marketplejsu-yandeks-market/nastrojka-podklyucheniya-k-lk-yandeks-market)
 
 ## Скрипт `seller.py`
 
