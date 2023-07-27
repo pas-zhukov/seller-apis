@@ -12,7 +12,7 @@ logger = logging.getLogger(__file__)
 
 
 def get_product_list(last_id: str, client_id: str, seller_token: str) -> dict:
-    """Получить список товаров магазина Ozon
+    """Получить список товаров магазина Ozon.
 
     Делает запрос к API Ozon Seller, используя метод для получения списка товаров.
     Предусматривает пагинацию, чтобы было возможно перебрать все страницы с товарами.
@@ -78,7 +78,7 @@ def get_product_list(last_id: str, client_id: str, seller_token: str) -> dict:
 
 
 def get_offer_ids(client_id: str, seller_token: str) -> list:
-    """Получить артикулы товаров магазина Ozon
+    """Получить артикулы товаров магазина Ozon.
 
     Собирает артикулы всех товаров продавца, используя
     запросы к API и пагинацию.
@@ -110,7 +110,7 @@ def get_offer_ids(client_id: str, seller_token: str) -> list:
 
 
 def update_price(prices: list[dict], client_id: str, seller_token: str):
-    """Обновить цены товаров на Ozon
+    """Обновить цены товаров на Ozon.
 
     Args:
         prices (list): Список товаров с информацией о стоимости
@@ -161,7 +161,7 @@ def update_price(prices: list[dict], client_id: str, seller_token: str):
 
 
 def update_stocks(stocks: list, client_id: str, seller_token: str) -> dict:
-    """Обновить кол-во товаров в наличии на Ozon
+    """Обновить кол-во товаров в наличии на Ozon.
 
     Args:
         stocks (list): Список словарей с артикулами и кол-вом товаров в наличии
@@ -212,7 +212,7 @@ def update_stocks(stocks: list, client_id: str, seller_token: str) -> dict:
 
 
 def download_stock() -> list[dict]:
-    """Скачать файл `ostatki` с сайта casio
+    """Скачать файл `ostatki` с сайта casio.
 
     Returns:
         list[dict]: Список карточек товаров
@@ -339,7 +339,7 @@ def price_conversion(price: str) -> str:
 
 
 def divide(lst: list, n: int) -> list:
-    """Разделить список lst на части по n элементов
+    """Разделить список lst на части по n элементов.
 
     Args:
         lst (list): Список для разделения
@@ -357,7 +357,7 @@ def divide(lst: list, n: int) -> list:
 
 
 async def upload_prices(watch_remnants: list[dict], client_id: str, seller_token: str) -> list[dict]:
-    """Обновить цены товаров в магазине Ozon
+    """Обновить цены товаров в магазине Ozon.
 
     Args:
         watch_remnants (list[dict]): Список карточек товаров
@@ -387,8 +387,7 @@ async def upload_prices(watch_remnants: list[dict], client_id: str, seller_token
 
 
 async def upload_stocks(watch_remnants: list[dict], client_id: str, seller_token: str) -> tuple[list, list]:
-    """Обновить данные о кол-ве товаров на сайте Ozon
-
+    """Обновить данные о кол-ве товаров на сайте Ozon.
 
     Args:
         watch_remnants (list[dict]): Список карточек товаров

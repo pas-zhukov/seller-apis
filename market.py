@@ -11,7 +11,7 @@ logger = logging.getLogger(__file__)
 
 
 def get_product_list(page: str, campaign_id: int, access_token: str) -> dict:
-    """Получить список товаров в Яндекс.Маркет
+    """Получить список товаров в Яндекс.Маркет.
 
     Args:
         page (str): Идентификатор (номер) страницы
@@ -147,7 +147,7 @@ def update_stocks(stocks: list[dict], campaign_id: int, access_token: str) -> di
 
 
 def update_price(prices: list[dict], campaign_id: int, access_token: str) -> dict:
-    """Обновить цены товаров на Яндекс.Маркет
+    """Обновить цены товаров на Яндекс.Маркет.
 
     Args:
         prices (list): Список товаров с информацией о стоимости
@@ -194,7 +194,7 @@ def update_price(prices: list[dict], campaign_id: int, access_token: str) -> dic
 
 
 def get_offer_ids(campaign_id: int, market_token: str) -> list[str]:
-    """Получить артикулы товаров Яндекс маркета
+    """Получить артикулы товаров Яндекс маркета.
 
     Args:
         campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
@@ -335,7 +335,7 @@ def create_prices(watch_remnants: list[dict], offer_ids: list) -> list[dict]:
 
 
 async def upload_prices(watch_remnants: list[dict], campaign_id: int, market_token: str) -> list[dict]:
-    """Обновить цены товаров на Яндекс.Маркет
+    """Обновить цены товаров на Яндекс.Маркет.
 
     Args:
         watch_remnants (list[dict]): Список карточек товаров
@@ -368,62 +368,61 @@ async def upload_prices(watch_remnants: list[dict], campaign_id: int, market_tok
 async def upload_stocks(watch_remnants: list[dict], campaign_id: int, market_token: str, warehouse_id: int) -> tuple[list, list]:
     """Обновить данные о кол-ве товаров на Яндекс.Маркет.
 
+    Args:
+        watch_remnants (list[dict]): Список карточек товаров
+        campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
+        market_token (str): API-ключ продавца Яндекс.Маркет
+        warehouse_id (int): ID склада
 
-        Args:
-            watch_remnants (list[dict]): Список карточек товаров
-            campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
-            market_token (str): API-ключ продавца Яндекс.Маркет
-            warehouse_id (int): ID склада
+    Returns:
+        tuple[list, list]: Список товаров, с артикулами и кол-вом, которые есть в наличии;
+        список всех товаров с артикулами и кол-вом.
 
-        Returns:
-            tuple[list, list]: Список товаров, с артикулами и кол-вом, которые есть в наличии;
-            список всех товаров с артикулами и кол-вом.
-
-        Examples:
-            >>> update_stocks(watch_remnants, campaign_id, market_token, warehouse_id)
-            (
-              [
+    Examples:
+        >>> update_stocks(watch_remnants, campaign_id, market_token, warehouse_id)
+        (
+          [
+            {
+              "sku": 123123,
+              "warehouseId": 1234567,
+              "items": [
                 {
-                  "sku": 123123,
-                  "warehouseId": 1234567,
-                  "items": [
-                    {
-                      "count": 100,
-                      "type": "FIT",
-                      "updatedAt": "2008-09-22T14:01:54.9571247Z"
-                    }
-                  ]
+                  "count": 100,
+                  "type": "FIT",
+                  "updatedAt": "2008-09-22T14:01:54.9571247Z"
                 }
-              ],
-              [
-                [
+              ]
+            }
+          ],
+          [
+            [
+              {
+                "sku": 123123,
+                "warehouseId": 1234567,
+                "items": [
                   {
-                    "sku": 123123,
-                    "warehouseId": 1234567,
-                    "items": [
-                      {
-                        "count": 100,
-                        "type": "FIT",
-                        "updatedAt": "2008-09-22T14:01:54.9571247Z"
-                      }
-                    ]
-                  }
-                ],
-                [
-                  {
-                    "sku": 123124,
-                    "warehouseId": 1234567,
-                    "items": [
-                      {
-                        "count": 0,
-                        "type": "FIT",
-                        "updatedAt": "2008-09-22T14:01:54.9571247Z"
-                      }
-                    ]
+                    "count": 100,
+                    "type": "FIT",
+                    "updatedAt": "2008-09-22T14:01:54.9571247Z"
                   }
                 ]
-              ]
-            )
+              }
+            ],
+            [
+              {
+                "sku": 123124,
+                "warehouseId": 1234567,
+                "items": [
+                  {
+                    "count": 0,
+                    "type": "FIT",
+                    "updatedAt": "2008-09-22T14:01:54.9571247Z"
+                  }
+                ]
+              }
+            ]
+          ]
+        )
 
     """
     offer_ids = get_offer_ids(campaign_id, market_token)
