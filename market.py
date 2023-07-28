@@ -10,12 +10,12 @@ from seller import divide, price_conversion
 logger = logging.getLogger(__file__)
 
 
-def get_product_list(page: str, campaign_id: int, access_token: str) -> dict:
+def get_product_list(page: str, campaign_id: str, access_token: str) -> dict:
     """Получить список товаров в Яндекс.Маркет.
 
     Args:
         page (str): Идентификатор (номер) страницы
-        campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
+        campaign_id (str): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
         access_token (str): API-ключ продавца Яндекс.Маркет
 
     Returns:
@@ -99,12 +99,12 @@ def get_product_list(page: str, campaign_id: int, access_token: str) -> dict:
     return response_object.get("result")
 
 
-def update_stocks(stocks: list[dict], campaign_id: int, access_token: str) -> dict:
+def update_stocks(stocks: list[dict], campaign_id: str, access_token: str) -> dict:
     """Обновить кол-во товаров в наличии на Яндекс.Маркет.
 
     Args:
         stocks (list[dict]): Список словарей с артикулами и кол-вом товаров в наличии
-        campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
+        campaign_id (str): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
         access_token (str): API-ключ продавца Яндекс.Маркет
 
     Returns:
@@ -146,12 +146,12 @@ def update_stocks(stocks: list[dict], campaign_id: int, access_token: str) -> di
     return response_object
 
 
-def update_price(prices: list[dict], campaign_id: int, access_token: str) -> dict:
+def update_price(prices: list[dict], campaign_id: str, access_token: str) -> dict:
     """Обновить цены товаров на Яндекс.Маркет.
 
     Args:
         prices (list): Список товаров с информацией о стоимости
-        campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
+        campaign_id (str): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
         access_token (str): API-ключ продавца Яндекс.Маркет
 
     Returns:
@@ -193,11 +193,11 @@ def update_price(prices: list[dict], campaign_id: int, access_token: str) -> dic
     return response_object
 
 
-def get_offer_ids(campaign_id: int, market_token: str) -> list[str]:
+def get_offer_ids(campaign_id: str, market_token: str) -> list[str]:
     """Получить артикулы товаров Яндекс маркета.
 
     Args:
-        campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
+        campaign_id (str): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
         market_token (str): API-ключ продавца Яндекс.Маркет
 
     Returns:
@@ -222,13 +222,13 @@ def get_offer_ids(campaign_id: int, market_token: str) -> list[str]:
     return offer_ids
 
 
-def create_stocks(watch_remnants: list[dict], offer_ids: list, warehouse_id: int) -> list[dict]:
+def create_stocks(watch_remnants: list[dict], offer_ids: list, warehouse_id: str) -> list[dict]:
     """Создать список товаров с количеством в наличии.
 
     Args:
         watch_remnants (list[dict]): Список карточек товаров
         offer_ids (list): Список с артикулами товаров на Яндекс.Маркет
-        warehouse_id (int): ID склада
+        warehouse_id (str): ID склада
 
     Returns:
         list: Список словарей с артикулами и кол-вом товаров в наличии
@@ -334,12 +334,12 @@ def create_prices(watch_remnants: list[dict], offer_ids: list) -> list[dict]:
     return prices
 
 
-async def upload_prices(watch_remnants: list[dict], campaign_id: int, market_token: str) -> list[dict]:
+async def upload_prices(watch_remnants: list[dict], campaign_id: str, market_token: str) -> list[dict]:
     """Обновить цены товаров на Яндекс.Маркет.
 
     Args:
         watch_remnants (list[dict]): Список карточек товаров
-        campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
+        campaign_id (str): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
         market_token (str): API-ключ продавца Яндекс.Маркет
 
     Returns:
@@ -365,14 +365,14 @@ async def upload_prices(watch_remnants: list[dict], campaign_id: int, market_tok
     return prices
 
 
-async def upload_stocks(watch_remnants: list[dict], campaign_id: int, market_token: str, warehouse_id: int) -> tuple[list, list]:
+async def upload_stocks(watch_remnants: list[dict], campaign_id: str, market_token: str, warehouse_id: str) -> tuple[list, list]:
     """Обновить данные о кол-ве товаров на Яндекс.Маркет.
 
     Args:
         watch_remnants (list[dict]): Список карточек товаров
-        campaign_id (int): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
+        campaign_id (str): Идентификатор кампании и идентификатор магазина Яндекс.Маркет
         market_token (str): API-ключ продавца Яндекс.Маркет
-        warehouse_id (int): ID склада
+        warehouse_id (str): ID склада
 
     Returns:
         tuple[list, list]: Список товаров, с артикулами и кол-вом, которые есть в наличии;
