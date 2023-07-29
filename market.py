@@ -300,7 +300,7 @@ def create_prices(watch_remnants: list[dict], offer_ids: list) -> list[dict]:
         offer_ids (list): Список с артикулами товаров на Яндекс.Маркет
 
     Returns:
-        str[dict]: Список товаров с информацией о стоимости
+        list[dict]: Список товаров с информацией о стоимости
 
     Examples:
         >>> create_prices(watch_remnants, offer_ids)
@@ -343,7 +343,7 @@ async def upload_prices(watch_remnants: list[dict], campaign_id: str, market_tok
         market_token (str): API-ключ продавца Яндекс.Маркет
 
     Returns:
-        str[dict]: Список товаров с информацией о стоимости
+        list[dict]: Список товаров с информацией о стоимости
 
     Examples:
         >>> create_prices(watch_remnants, campaign_id, market_token)
